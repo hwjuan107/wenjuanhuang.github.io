@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wenjuan Huang</title>
+    <link rel="stylesheet" href="styles/index.css"/>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/androidstudio.css" />
+  </head>
+
+  <body class="body-style">
+    <div class="head-div container-fluid">
+      <div class="logo-div">
+        <div class="logo-row" >
+          <img class="logo-img" src="images/wh.png">
+        </div>
+        <div class="logo-name">
+          <center>Wenjuan Huang</center>
+        </div>
+      </div>
+
+      <div class=" container-fluid head-menu">
+        <div class="row">
+          <div class="col-md-12 ms-2">
+            <img class="band-img img-fluid"  src="images/band.png"/>
+          </div>
+          
+          <div class="col-md-12 ms-2">
+            <nav class="navbar navbar-expand-lg py-0">
+              <div class="container-fluid">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="index.html"><i class="fa-solid fa-house-chimney-window"></i>Home
+                        
+                      </a>
+                    </li>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="demo.html">Demo
+                       
+                      </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="categories.html">Categories
+                        <span class="sr-only">
+                          (current)
+                        </span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    
+                  </ul>
+              
+                  <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item ">
+                      
+                      <a href="mailto:wenjuanhuang2023@gmail.com">
+                        <button class="contact-button" onclick="">
+                          <img class="contact-img " src="images/email.png"> 
+                        </button>                       
+                      </a>
+
+                      <button class="contact-button" onclick="
+                        window.location.href = 'https://www.linkedin.com/in/wenjuan-huang-8a8867284/';
+                       " target="_blank">
+                        <img class="contact-img" src="images/linkedin.png">
+                      </button>                      
+                    </li>
+                    <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>        
+      </div>
+    </div>
+    <!--content part-->
+    <div class="content-div" >
+      <div class="row container-fluid">
+        <div class="col-md-12 ">
+          <div class="text-center"><strong>leetcode->1235. Maximum Profit in Job Scheduling</strong></div>
+          <div>
+            <p>
+              We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
+            </p>
+            <p>Example 1:</p>
+            <p>Input: startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]</p>
+            <p>Output: 120</p>
+            <p>Explanation: The subset chosen is the first and fourth job. 
+              Time range [1-3]+[3-6] , we get profit of 120 = 50 + 70.</p>
+          </div>
+          <div>
+            <img src="images/max-profit.png" width="1100" height="200"/>         
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <div class="row container">
+            <div class="col-md-12">
+              <div class="text-center"><strong>Source Code</strong></div>
+            </div>
+            <div class="col-md-12 ">
+              <!--codes here-->
+              <div class="code-style">
+                <pre >
+                  <code class="python">
+                  <!-- HTML code here -->                                  
+                  class Solution(object):
+                  def jobScheduling(self, startTime, endTime, profit):
+                      """
+                      :type startTime: List[int]
+                      :type endTime: List[int]
+                      :type profit: List[int]
+                      :rtype: int
+                      """
+                      jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1]) #Sort by end times
+                      n = len(jobs)
+                      # Create a memoization table to store the maximum profit for each time index
+                      memo = [-1] * n
+                      def findMaxProfit(index):
+                          if index == 0:
+                              return jobs[0][2]
+                          if memo[index] != -1:
+                              return memo[index]
+              
+                          # Find the latest non-overlapping job using binary search
+                          left, right = 0, index - 1
+                          while left <= right:
+                              mid = (left + right) // 2
+                              if jobs[mid][1] <= jobs[index][0]:
+                                  left = mid + 1
+                              else:
+                                  right = mid - 1
+                          latest_non_overlapping_job = left - 1 if left > 0 else -1
+              
+                          if latest_non_overlapping_job != -1:  #If a non-overlapping job is found
+                              # Include the current job's profit and add it to the maximum profit obtained by considering
+                              # the job just before the latest non-overlapping job
+                              include_profit = jobs[index][2] + findMaxProfit(latest_non_overlapping_job)
+                              # Exclude the current job and keep the maximum profit obtained by considering the previous job
+                              exclude_profit = findMaxProfit(index - 1)
+                              # choose the maximum profit between the two choices and store it in the memoization table
+                              memo[index] = max(include_profit, exclude_profit)
+                          else: # If no non-overlapping job is found, only consider the current job, 
+                                # set the maximum profit to the profit of the current job.                
+                              memo[index] = max(jobs[index][2], findMaxProfit(index - 1))
+              
+                          return memo[index]
+              
+                      return findMaxProfit(n - 1)
+                  
+                  </code>
+                  
+                </pre>
+              </div>
+            </div>
+          </div>
+     
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center footer-style">
+      <div row>
+        <div col-md-12>
+          <p>© Some rights are reserved.</p>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="datatables/js/jquery.dataTables.min.js"></script>-->
+    <!--<script src="scripts/jquery-3.7.0.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="scripts/table-script.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll(); // initialize highlighting
+    </script>
+
+  </body>
+</html>

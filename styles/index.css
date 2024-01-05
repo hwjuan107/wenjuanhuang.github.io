@@ -1,0 +1,157 @@
+.body-style{
+  background-color: rgb(226, 234, 247);
+  font-family: Arial;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 100vh;
+}
+
+.head-div{
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-div{
+  width: 136px;
+  border: solid;
+  border-color: white;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.head-menu{
+  flex:1;
+  border: solid;
+  border-color: white;
+  background-color: white;
+}
+
+.logo-name{
+  flex: 1;
+  font-family: cursive;
+  height: 10px;
+}
+
+.logo-img{
+  width: 130px;
+  height: 120px;
+  border-radius: 60px;
+}
+
+
+.contact-button{
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.contact-img{
+  height: 20px;
+  width: 20px;
+}
+
+.head-menu-align{
+  padding-top: 20px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.band-menu{
+  font-size: 10px;
+}
+
+.search-input{
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  border-color: rgb(226, 234, 247);;
+  height: 25px;
+  width: 200px;
+}
+
+.bar-menu-div{
+  width: 180px;
+  background-color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  
+}
+
+.content-div{
+  margin-right: 20px;
+  margin-top: 10px;
+  background-color: white;
+  
+}
+
+.footer-style{
+  background-color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.fa-font-style{
+  color: rgb(226, 234, 247);
+}
+
+.band-img{
+  height: 75px;
+  width: fit-content;
+  object-fit: contain;
+}
+
+.content-div{
+  background-color: white;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.custom-list-group{
+  background-color: white;
+  border: none;
+}
+
+.nav-link {
+  color: rgb(6, 6, 63);
+}
+
+.nav-item>a:hover {
+  color: green;
+}
+
+/*code to change background color*/
+.navbar-nav>.active>a {
+  background-color:rgb(226, 234, 247);
+  color:rgb(6, 6, 63)
+}
+
+.recent-fontsize{
+  font-size: smaller;
+}
+
+.hljs-copy {
+  float: right;
+  cursor: pointer;
+}
+
+.code-style{
+  
+  align-items: center;
+}
+

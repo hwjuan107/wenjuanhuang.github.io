@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wenjuan Huang</title>
+    <link rel="stylesheet" href="styles/index.css"/>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/androidstudio.css" />
+  </head>
+
+  <body class="body-style">
+    <div class="head-div container-fluid">
+      <div class="logo-div">
+        <div class="logo-row" >
+          <img class="logo-img" src="images/wh.png">
+        </div>
+        <div class="logo-name">
+          <center>Wenjuan Huang</center>
+        </div>
+      </div>
+
+      <div class=" container-fluid head-menu">
+        <div class="row">
+          <div class="col-md-12 ms-2">
+            <img class="band-img img-fluid"  src="images/band.png"/>
+          </div>
+          
+          <div class="col-md-12 ms-2">
+            <nav class="navbar navbar-expand-lg py-0">
+              <div class="container-fluid">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="index.html"><i class="fa-solid fa-house-chimney-window"></i>Home
+                        
+                      </a>
+                    </li>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="demo.html">Demo
+                       
+                      </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="categories.html">Categories
+                        <span class="sr-only">
+                          (current)
+                        </span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    
+                  </ul>
+              
+                  <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item ">
+                      
+                      <a href="mailto:wenjuanhuang2023@gmail.com">
+                        <button class="contact-button" onclick="">
+                          <img class="contact-img " src="images/email.png"> 
+                        </button>                       
+                      </a>
+
+                      <button class="contact-button" onclick="
+                        window.location.href = 'https://www.linkedin.com/in/wenjuan-huang-8a8867284/';
+                       " target="_blank">
+                        <img class="contact-img" src="images/linkedin.png">
+                      </button>                      
+                    </li>
+                    <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>        
+      </div>
+    </div>
+    <!--content part-->
+    <div class="content-div" >
+      <div class="row container-fluid">
+        <div class="col-md-12 ">
+          <div class="text-center"><strong>leetcode->1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree</strong></div>
+          <div>
+            <p>
+              Find all the critical and pseudo-critical edges in the given graph's minimum spanning tree (MST). An MST edge whose deletion from the graph would cause the MST weight to increase is called a critical edge. On the other hand, a pseudo-critical edge is that which can appear in some MSTs but not all. 
+            </p>
+            <p>Example 1:</p>
+            <p>Input: n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]]</p>
+            <p>Output: [[0,1],[2,3,4,5]]</p>
+          </div>
+          <div>
+            <img src="images/critical_mst.png" width="1100" height="200"/>         
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <div class="row container">
+            <div class="col-md-12">
+              <div class="text-center"><strong>Source Code</strong></div>
+            </div>
+            <div class="col-md-12 ">
+              <!--codes here-->
+              <div class="code-style">
+                <pre >
+                  <code class="python">
+                  <!-- HTML code here -->                                  
+                  class UnionFind:
+                    def __init__(self, n):
+                        self.parent = list(range(n))
+                        self.rank = [0] * n
+
+                    def find(self, x):
+                        if self.parent[x] == x:
+                            return x
+                        self.parent[x] = self.find(self.parent[x])
+                        return self.parent[x]
+
+                    def union(self, x, y):
+                        xset = self.find(x)
+                        yset = self.find(y)
+                        if xset != yset:
+                            if self.rank[xset] < self.rank[yset]:
+                                self.parent[xset] = yset
+                            elif self.rank[xset] > self.rank[yset]:
+                                self.parent[yset] = xset
+                            else:
+                                self.parent[xset] = yset
+                                self.rank[yset] += 1
+                            return True
+                        return False
+
+                class Solution(object):
+                    def findCriticalAndPseudoCriticalEdges(self, n, edges):
+                        """
+                        :type n: int
+                        :type edges: List[List[int]]
+                        :rtype: List[List[int]]
+                        """
+                        for i in range(len(edges)):
+                            edges[i].append(i)
+                        edges.sort(key=lambda x: x[2])
+
+                        critical = []
+                        pseudo_critical = []
+                        mst = []
+
+                        for i in range(len(edges)):
+                            # Check if excluding the current edge affects the MST weight
+                            if self.boruvka_mst(n, edges, i) != self.boruvka_mst(n, edges, -1):
+                                # The edge is critical since excluding it changes the MST
+                                critical.append(edges[i][3])
+                            else:# The edge is part of the MST
+                                mst.append(i)
+
+                        for i in mst:
+                            # Check if including the current MST edge changes the MST weight
+                            if self.boruvka_mst(n, edges, -1, i) == self.boruvka_mst(n, edges, -1):
+                                # The edge is pseudo-critical since including it maintains the MST weight
+                                pseudo_critical.append(edges[i][3])
+                        critical.sort()
+                        pseudo_critical.sort()
+                        return [critical, pseudo_critical]
+
+                    def boruvka_mst(self, n, edges, exclude_edge=-1, include_edge=-1):
+                        dsu = UnionFind(n)
+                        weight = 0
+
+                        if include_edge != -1:
+                            weight += edges[include_edge][2]
+                            dsu.union(edges[include_edge][0], edges[include_edge][1])
+                        #checking if it creates a cycle or connects different components
+                        for i in range(len(edges)):
+                            if i == exclude_edge:
+                                continue
+                            edge = edges[i]
+
+                            if dsu.find(edge[0]) == dsu.find(edge[1]):
+                                continue
+
+                            dsu.union(edge[0], edge[1])
+                            weight += edge[2]
+                        # make sure all vertices in the graph belong to the same connected component
+                        for i in range(n):
+                            if dsu.find(i) != dsu.find(0):
+                                return float('inf')
+
+                        return weight
+                  
+                  </code>
+                  
+                </pre>
+              </div>
+            </div>
+          </div>
+     
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center footer-style">
+      <div row>
+        <div col-md-12>
+          <p>© Some rights are reserved.</p>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="datatables/js/jquery.dataTables.min.js"></script>-->
+    <!--<script src="scripts/jquery-3.7.0.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="scripts/table-script.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll(); // initialize highlighting
+    </script>
+
+  </body>
+</html>

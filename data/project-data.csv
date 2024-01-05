@@ -1,0 +1,3 @@
+﻿title,content,date,categories,link_page
+Processing images,Processing images through OpenCV and plots results in a Jupyter Notebook using the Matplotlib library.,"Jan. 25, 2023",DIP,process-image.html
+Detected handwritten digits with CNNs,Created a simple CNN from scratch using the deep learning framework of Keras to perform classification on the MNIST dataset.,"Feb. 03, 2023",CV,cnn-mnist.html

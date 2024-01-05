@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wenjuan Huang</title>
+    <link rel="stylesheet" href="styles/index.css"/>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="datatables/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs-themes@1.0.0/androidstudio.css" />
+  </head>
+
+  <body class="body-style">
+    <div class="head-div container-fluid">
+      <div class="logo-div">
+        <div class="logo-row" >
+          <img class="logo-img" src="images/wh.png">
+        </div>
+        <div class="logo-name">
+          <center>Wenjuan Huang</center>
+        </div>
+      </div>
+
+      <div class=" container-fluid head-menu">
+        <div class="row">
+          <div class="col-md-12 ms-2">
+            <img class="band-img img-fluid"  src="images/band.png"/>
+          </div>
+          
+          <div class="col-md-12 ms-2">
+            <nav class="navbar navbar-expand-lg py-0">
+              <div class="container-fluid">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="index.html"><i class="fa-solid fa-house-chimney-window"></i>Home
+                        
+                      </a>
+                    </li>
+                    <li class="nav-item ">
+                      <a class="nav-link" href="demo.html">Demo
+                       
+                      </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="categories.html">Categories
+                        <span class="sr-only">
+                          (current)
+                        </span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    
+                  </ul>
+              
+                  <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item ">
+                      
+                      <a href="mailto:wenjuanhuang2023@gmail.com">
+                        <button class="contact-button" onclick="">
+                          <img class="contact-img " src="images/email.png"> 
+                        </button>                       
+                      </a>
+
+                      <button class="contact-button" onclick="
+                        window.location.href = 'https://www.linkedin.com/in/wenjuan-huang-8a8867284/';
+                       " target="_blank">
+                        <img class="contact-img" src="images/linkedin.png">
+                      </button>                      
+                    </li>
+                    <li class="nav-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>        
+      </div>
+    </div>
+    <!--content part-->
+    <div class="content-div" >
+      <div class="row container-fluid">
+        <div class="col-md-12 ">
+          <div class="text-center"><strong>leetcode->15. 3Sum</strong></div>
+          <div>
+            <p>
+              Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+            </p>
+            <p>Example 1:</p>
+            <p>Input: nums = [-1,0,1,2,-1,-4]</p>
+            <p>Output: [[-1,-1,2],[-1,0,1]]</p>
+            <p>Explanation: </p>
+            <p>nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.</p>
+            <p>nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.</p>
+            <p>nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.</p>
+            <p>The distinct triplets are [-1,0,1] and [-1,-1,2].</p>
+            <p>Notice that the order of the output and the order of the triplets does not matter.</p>
+          </div>
+          <div>
+            <img src="images/sum_3.png" width="1100" height="200"/>         
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <div class="row container">
+            <div class="col-md-12">
+              <div class="text-center"><strong>Source Code</strong></div>
+            </div>
+            <div class="col-md-12 ">
+              <!--codes here-->
+              <div class="code-style">
+                <pre >
+                  <code class="python">
+                  <!-- code here -->                                  
+                  class ListNode:
+                    def __init__(self, key):
+                        self.key = key
+                        self.next = None
+
+                class UniversalHashTable:
+                    def __init__(self, size, p):
+                        self.size = size
+                        self.table = [None] * size
+                        self.p = p
+                        self.a = random.randint(1, p - 1)
+                        self.b = random.randint(0, p - 1)
+
+                    def hash_function(self, key):
+                        return ((self.a * key + self.b) % self.p) % self.size
+
+                    def insert(self, key):
+                        index = self.hash_function(key)
+                        if self.table[index] is None:
+                            self.table[index] = ListNode(key)
+                        else:
+                            # Handle collisions using linked list
+                            new_node = ListNode(key)
+                            new_node.next = self.table[index]
+                            self.table[index] = new_node
+
+                    def find(self, key):
+                        index = self.hash_function(key)
+                        current = self.table[index]
+                        while current:
+                            if current.key == key:
+                                return current.key
+                            current = current.next
+                        return None
+
+                class Solution(object):
+                    def threeSum(self, nums):
+                        """
+                        :type nums: List[int]
+                        :rtype: List[List[int]]
+                        """
+                        result = set()  # Use a set to track unique triplets
+                        if len(nums)<3:
+                            return result
+                        if len(nums) == 3:
+                            if sum(nums) == 0:
+                                result.add(tuple(sorted(nums)))
+                            return result
+
+                        def is_prime(num):
+                            if num < 2:
+                                return False
+                            for i in range(2, int(num**0.5) + 1):
+                                if num % i == 0:
+                                    return False
+                            return True
+
+                        def next_prime(num):
+                            if num < 2:
+                                num = 2
+                            else:
+                                num += 1
+                            while not is_prime(num):
+                                num += 1
+                            return num
+                      
+                        # Choose the smallest prime number greater than the largest key in nums
+                        p = next_prime(max(nums) + 109)
+                        new_nums = []
+                        nums.sort()
+                        num_counts = Counter(nums)
+                        index = 0
+                        while index < len(nums):
+                            key = nums[index]
+                            if num_counts[key] >= 3 and new_nums.count(key) < 3 and key==0:
+                                new_nums.append(key)
+                                new_nums.append(key)
+                                new_nums.append(key)
+                                index = index + num_counts[key]
+                            elif num_counts[key] >= 2 and new_nums.count(key) < 2 and key!=0:
+                                new_nums.append(key)
+                                new_nums.append(key)
+                                index = index + num_counts[key]
+                            #elif num_counts[key] <= 3 and new_nums.count(key) < num_counts[key]:
+                            else:
+                                new_nums.append(key)
+                                index = index + 1
+                        #new_nums.sort()
+                        print(new_nums)
+                        new_len = len(new_nums)
+                        for i in range(new_len - 1):
+                            uni_hash_table = UniversalHashTable(len(nums) * 2, p)
+                            for j in range(i+1,new_len):
+                                # Extract the ith and (i+1)th numbers from the original hash table
+                                key_1, key_2 = new_nums[i], new_nums[j]
+
+                                complement = -(key_1 + key_2)
+                                complement_key = uni_hash_table.find(complement)
+                                if complement_key is not None: 
+                                    triplet = sorted([complement_key, key_1, key_2])
+                                    result.add(tuple(triplet))
+                                else:
+                                    uni_hash_table.insert(key_2)
+
+                        return [list(triplet) for triplet in result]
+                  
+                  </code>
+                  
+                </pre>
+              </div>
+            </div>
+          </div>
+     
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center footer-style">
+      <div row>
+        <div col-md-12>
+          <p>© Some rights are reserved.</p>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="datatables/js/jquery.dataTables.min.js"></script>-->
+    <!--<script src="scripts/jquery-3.7.0.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="scripts/table-script.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll(); // initialize highlighting
+    </script>
+
+  </body>
+</html>
