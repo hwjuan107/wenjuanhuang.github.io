@@ -11,15 +11,16 @@ $(document).ready(function () {
 
 
 const dataSet = [
+  ['Projects Demo', 'Projects demo page', 'Dec. 19, 2023', 'other','demo.html'],
+  ['Convolutional Autoencoders', 'Used Convolutional Autoencoders to detect anomalies in images of Flowers Recognitionn dataset.', 'Apr. 04, 2023', 'CV', 'con-autoencoder.html'],
+  ['ResNet50 CNN model', 'Used transfer learning on a pre-trained ResNet50 CNN model trained on the ImageNet dataset to perform classification for recognizing images of horses and camels', 'Mar. 01, 2023', 'CV', 'resnet.html'],
+  ['Used Keras to visualize inputs of VGG16', 'Used Keras to visualize inputs that maximize the activation of the filters in different layers of the VGG16 architecture, trained on ImageNet.', 'Feb.17, 2023', 'CV', 'vgg-imgnet.html'], 
   ['leetcode-15. 3Sum', 'Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.', 'Dec. 02, 2023', 'leetcode', 'sum-3.html'],
   ['leetcode-1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree', 'Find all the critical and pseudo-critical edges in the given graph\'s minimum spanning tree (MST). ', 'Nov. 03, 2023', 'leetcode', 'critical-mst.html'],
   ['leetcode-1235. Maximum Profit in Job Scheduling', 'We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].', 'Oct. 18, 2023', 'leetcode', 'max-profit.html'],
   ['leetcode-75. Sort Colors', 'Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent,', 'Sep. 22, 2023', 'leetcode', 'sort-colors.html'],
   ['Vision Transformer Model', 'Trained and evaluated the Vision Transformer on the Horses vs. Camels dataset.', 'Apr. 21, 2023', 'CV', 'vit.html'],
   ['YOLOv3 model', 'To perform object detection with YOLOv3 in Keras, the first step is to download the pre-trained model weights.', 'Apr. 11, 2023', 'CV', 'yolov3.html'],
-  ['Convolutional Autoencoders', 'Used Convolutional Autoencoders to detect anomalies in images of Flowers Recognitionn dataset.', 'Apr. 04, 2023', 'CV', 'con-autoencoder.html'],
-  ['ResNet50 CNN model', 'Used transfer learning on a pre-trained ResNet50 CNN model trained on the ImageNet dataset to perform classification for recognizing images of horses and camels', 'Mar. 01, 2023', 'CV', 'resnet.html'],
-  ['Used Keras to visualize inputs of VGG16', 'Used Keras to visualize inputs that maximize the activation of the filters in different layers of the VGG16 architecture, trained on ImageNet.', 'Feb.17, 2023', 'CV', 'vgg-imgnet.html'],
   ['Created a simple CNN from scratch using PyTorch', 'Download MNIST dataset in local system. Create a base CNN model (Conv → MaxPooling → Conv → MaxPooling → FC).', 'Feb. 11, 2023', 'CV', 'pytorch-cnn.html'],
   ['Detected handwritten digits with CNNs', 'Created a simple CNN from scratch using the deep learning framework of Keras to perform classification on the MNIST dataset.','Feb. 03, 2023', 'CV', 'cnn-mnist.html'],
   ['Processing images', 'Processing images through OpenCV and plots results in a Jupyter Notebook using the Matplotlib library.', 'Jan. 25, 2023', 'DIP', 'process-image.html'],
